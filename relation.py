@@ -10,3 +10,12 @@ class Relation:
 
     def remove(self, *elements):
         self.R.remove(tuple(elements))
+
+    def union(self, R2):
+        return self.R.union(R2)
+
+    def intersection(self, R2):
+        return self.R.intersection(R2)
+
+    def subtraction(self, R2):
+        return self.R.difference(R2) 
