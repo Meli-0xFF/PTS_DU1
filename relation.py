@@ -32,10 +32,10 @@ class Relation:
         for t1 in self.R:
             for t2 in R2.R:
                 if t1[1] == t2[0]: res.add((t1[0], t2[1]))
-        self.R = set(res)
+        self.R = res
 
     def is_reflexive(self):
-        return len(self.M) == len(filter(lambda m : True if (m, m) in self.R else False, self.M))
+        return 0 == len(filter(lambda m : True if (m, m) not in self.R else False, self.M))
 
     def is_symetric(self):
         return 0 == len(filter(lambda t : True if (t[1], t[0]) not in self.R else False, self.R))
