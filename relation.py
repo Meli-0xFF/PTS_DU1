@@ -31,8 +31,7 @@ class Relation:
         res = set()
         for t1 in self.R:
             for t2 in R2.R:
-                if t1[1] == t2[0]:
-                    res.add((t1[0], t2[1]))
+                if t1[1] == t2[0]: res.add((t1[0], t2[1]))
         self.R = set(res)
 
     def is_reflexive(self):
@@ -44,7 +43,5 @@ class Relation:
     def is_transitive(self):
         for t1 in self.R:
             for t2 in self.R:
-                if t1[1] == t2[0]:
-                    if (t1[0], t2[1]) not in self.R:
-                        return False
+                if t1[1] == t2[0]: if (t1[0], t2[1]) not in self.R: return False
         return True
