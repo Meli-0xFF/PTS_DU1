@@ -40,10 +40,7 @@ class Relation:
         return set() == set(filter(lambda t : True if not self.contains(t[1], t[0]) else False, self.R))
 
     def is_transitive(self):
-        for t1 in self.R:
-            for t2 in self.R:
-                if t1[1] == t2[0] and not self.contains(t1[0], t2[1]): return False
-        return True
+        return set() == set((t1, t2) for t1 in self.R for t2 in self.R if t1[1] == t2[0] and not self.contains(t1[0], t2[1]))
 
     def reflexive_transitive_closure(self):
         closure = self.R.union(set(map(lambda m : (m, m), self.M)))
@@ -52,3 +49,6 @@ class Relation:
             if closure_until_now == closure: break
             closure = closure_until_now
         return Relation(self.M, closure_until_now)
+
+def get_relation_class(M):
+    return Relation(M)
