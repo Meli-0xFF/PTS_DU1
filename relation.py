@@ -15,10 +15,10 @@ class Relation(PClass):
         return (x,y) in self.R
 
     def add(self, x, y):
-        return Relation(M=self.M, R=self.R | pset((x,y)))
+        return Relation(M=self.M, R=self.R | pset([(x,y)]))
 
     def remove(self, x, y):
-        return Relation(M=self.M, R=self.R - pset((x,y)))
+        return Relation(M=self.M, R=self.R - pset([(x,y)]))
 
     def union(self, R2):
         return Relation(M=self.M, R=self.R | R2.R)
@@ -33,7 +33,7 @@ class Relation(PClass):
         return Relation(M=self.M, R=pset(map(lambda t : t[::-1], self.R)))
  
     def composition(self, R2):
-        return Relation(self.M, R=pset((t1[0], t2[1]) for t1 in self.R for t2 in R2.R if t1[1] == t2[0]))
+        return Relation(M=self.M, R=pset((t1[0], t2[1]) for t1 in self.R for t2 in R2.R if t1[1] == t2[0]))
 
     def is_reflexive(self):
         return pset() == pset(filter(lambda m : True if not self.contains(m, m) else False, self.M))
